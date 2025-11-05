@@ -14,15 +14,17 @@ public class ShopperStack2 {
 
 	@Test
 void Sample2() throws InterruptedException {
-		ChromeOptions option = new ChromeOptions();
-		List<String> list = new ArrayList<String>();
+		ChromeOptions options = new ChromeOptions();
+options.addArguments("--headless");
+options.addArguments("--disable-infobars");
+options.addArguments("--no-sandbox");
+options.addArguments("--disable-dev-shm-usage");
+options.addArguments("--remote-allow-origins=*");
+options.addArguments("--disable-gpu");
+options.addArguments("--window-size=1920,1080");
 
-		list.add("--headless");
-		list.add("--disable-infobars");
-		option.addArguments(list);
-		option.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
+WebDriver driver = new ChromeDriver(options);
 
-		WebDriver driver = new ChromeDriver(option);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		driver.get("https://demowebshop.tricentis.com/register");
